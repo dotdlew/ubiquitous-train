@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Weather Dashboard</title>
+</head>
+
+<body class="flex-column min-100-vh">
+    <header class="hero">
+        <h1 class="app-title">Weather Dashboard</h1>
+    </header>
+
+    <main class="flex-row justify-space-between">
+        <div class="col-12 col-md-4">
+            <div class="card">
+                <h3 class="card-header text-uppercase">Search for a City</h3>
+                <form id="search-form" class="card-body">
+                    <input type="text" name="city" id="city" autofocus="true" class="form-input" />
+                    <button type="submit" class="btn">Search</button>
+                </form>
+                <div class="card-body" id="location-buttons">
+                    <button data-location="Austin" class="btn">Austin</button>
+                    <button data-location="Chicago" class="btn">Chicago</button>
+                    <button data-location="New_York" class="btn">New York</button>
+                    <button data-location="Orlando" class="btn">Orlando</button>
+                    <button data-location="San_Francisco" class="btn">San Francisco</button>
+                    <button data-location="Seattle" class="btn">Seattle</button>
+                    <button data-location="Denver" class="btn">Denver</button>
+                    <button data-location="Atlanta" class="btn">Atlanta</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 col-md-8">
+            <div class="flex-row justify-space-between"></div>
+            <div class="flex-row justify-space-between"></div>
+        </div>
+    </main>
+
+    <script src="./assets/js/homepage.js"></script>
+</body>
+
+</html>
