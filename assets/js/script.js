@@ -1,6 +1,16 @@
 var searchForm = document.querySelector("#search-form");
 var searchVal = document.querySelector("#form-input");
+var presetLocations = document.querySelector("#preset-buttons");
 var apiKey = "5971cbc972f6e5889ab628fd56908316";
+
+function presetsClickHandler(event) {
+    var preset = event.target.getAttribute("data-location");
+
+    if (preset) {
+        getSearch(preset)
+        searchVal.value = "";
+    }
+}
 
 function formSubmitHandler(event) {
     event.preventDefault();
@@ -30,3 +40,4 @@ function getSearch(search) {
 }
 
 searchForm.addEventListener("submit", formSubmitHandler);
+presetLocations.addEventListener('click', presetsClickHandler)
