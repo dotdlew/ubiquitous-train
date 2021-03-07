@@ -4,16 +4,14 @@ var apiKey = "5971cbc972f6e5889ab628fd56908316";
 
 function formSubmitHandler(event) {
     event.preventDefault();
-    console.log(event);
   
-    var search = searchVal.nodeValue.trim()
+    var search = searchVal.value.trim()
     if (search) {
         getSearch(search)
-        searchVal.nodeValue = "";
+        searchVal.value = "";
     } else {
         console.log(error);
     }
-    console.log(search)
 }
 
 function getSearch(search) {
