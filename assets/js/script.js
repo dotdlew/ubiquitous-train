@@ -4,20 +4,20 @@ var apiKey = "5971cbc972f6e5889ab628fd56908316";
 
 function formSubmitHandler(event) {
     event.preventDefault();
-  
+
     var search = searchVal.value.trim()
     if (search) {
         getSearch(search)
         searchVal.value = "";
     } else {
-        console.log(error);
+        console.log(err);
     }
 }
 
 function getSearch(search) {
     // format url
     var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + search + "&appid=" + apiKey;
-    
+
     // fetch API data
     fetch(apiUrl)
         .then(response => {
