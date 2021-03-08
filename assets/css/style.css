@@ -221,6 +221,10 @@ li {
   height: 268px;
 }
 
+.weather-forecast-list li {
+  display: flex;
+}
+
 .justify-space-between {
   justify-content: space-between;
 }

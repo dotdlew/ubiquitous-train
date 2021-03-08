@@ -32,7 +32,7 @@ function displayForecast(forecast) {
     var forecast = document.getElementById('forecastBlock03');
     var forecast = document.getElementById('forecastBlock04');
     var forecast = document.getElementById('forecastBlock05');
-    
+
 
     // check if api returned any forecast
     if (forecast.length === 0) {
@@ -42,7 +42,7 @@ function displayForecast(forecast) {
 
     // messy set forecast
     forecastName.textContent = "5-Day Forecast"
-    
+
 }
 
 function presetsClickHandler(event) {
@@ -65,12 +65,12 @@ function formSubmitHandler(event) {
 }
 
 function getSearch(search) {
-    // format url
-    var weather = "http://api.openweathermap.org/data/2.5/weather?q=" + search + "&appid=" + apiKey;
-    var forecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + search + "&appid=" + apiKey;
+    // format API urls
+    var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + search + "&appid=" + apiKey;
+    var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + search + "&appid=" + apiKey;
 
     // fetch API weather data
-    fetch(weather)
+    fetch(weatherURL)
         .then(response => {
             if (response.ok) {
                 response.json()
@@ -86,12 +86,13 @@ function getSearch(search) {
         })
 
     // fetch API forecast data
-    fetch(forecast)
+    fetch(forecastURL)
         .then(response => {
             if (response.ok) {
                 response.json()
                     .then(data => {
                         console.log("forecast", data)
+                        console.log(forecastURL)
                         displayForecast(data)
                     })
             } else {
