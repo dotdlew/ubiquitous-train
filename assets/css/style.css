@@ -213,6 +213,14 @@ li {
   flex-wrap: wrap;
 }
 
+.weather-data {
+  height: 266px;
+}
+
+.weather-forecast {
+  height: 268px;
+}
+
 .justify-space-between {
   justify-content: space-between;
 }

@@ -4,22 +4,44 @@ var presetLocations = document.querySelector("#preset-buttons");
 var apiKey = "5971cbc972f6e5889ab628fd56908316";
 
 function displayWeather(weather) {
-    var weatherDataName = document.getElementById('weather-data-name');
-    var weatherDataTemp = document.getElementById('weather-data-temperature');
-    var weatherDataHumi = document.getElementById('weather-data-humidity');
-    var weatherDataSped = document.getElementById('weather-data-wind-speed');
-    var weatherDataInde = document.getElementById('weather-data-uv-index');
+    var weatherDataName = document.getElementById('weatherBlock00');
+    var weatherDataTemp = document.getElementById('weatherBlock01');
+    var weatherDataHumi = document.getElementById('weatherBlock02');
+    var weatherDataSped = document.getElementById('weatherBlock03');
+    var weatherDataInde = document.getElementById('weatherBlock04');
+
+
     // check if api returned any weather
     if (weather.length === 0) {
         weatherDataContainer.textContent = "No weather found.";
         return;
     }
-    
+
+    // messy set weather
     weatherDataName.textContent = weather.name;
     weatherDataTemp.textContent = "Temperature: " + weather.main.temp;
-    weatherDataHumi.textContent = "Humidity: " + weather.main.humidity;
-    weatherDataSped.textContent = "Wind Speed: " + weather.wind.speed;
+    weatherDataHumi.textContent = "Humidity: " + weather.main.humidity + "%";
+    weatherDataSped.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
     weatherDataInde.textContent = "UV Index: " + weather.weather[0].main;
+}
+
+function displayForecast(forecast) {
+    var forecastName = document.getElementById('forecastBlock00');
+    var forecast = document.getElementById('forecastBlock01');
+    var forecast = document.getElementById('forecastBlock02');
+    var forecast = document.getElementById('forecastBlock03');
+    var forecast = document.getElementById('forecastBlock04');
+    var forecast = document.getElementById('forecastBlock05');
+    
+
+    // check if api returned any forecast
+    if (forecast.length === 0) {
+        forecast.textContent = "No forecast found.";
+        return;
+    }
+
+    // messy set forecast
+    forecastName.textContent = "5-Day Forecast"
     
 }
 
@@ -44,16 +66,33 @@ function formSubmitHandler(event) {
 
 function getSearch(search) {
     // format url
-    var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + search + "&appid=" + apiKey;
+    var weather = "http://api.openweathermap.org/data/2.5/weather?q=" + search + "&appid=" + apiKey;
+    var forecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + search + "&appid=" + apiKey;
 
-    // fetch API data
-    fetch(apiUrl)
+    // fetch API weather data
+    fetch(weather)
         .then(response => {
             if (response.ok) {
                 response.json()
                     .then(data => {
-                        console.log(data)
                         displayWeather(data)
+                    })
+            } else {
+                console.log("error: " + response.statusText)
+            }
+        })
+        .catch(err => {
+            console.log("error: " + err.statusText)
+        })
+
+    // fetch API forecast data
+    fetch(forecast)
+        .then(response => {
+            if (response.ok) {
+                response.json()
+                    .then(data => {
+                        console.log("forecast", data)
+                        displayForecast(data)
                     })
             } else {
                 console.log("error: " + response.statusText)
