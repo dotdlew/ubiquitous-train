@@ -66,8 +66,8 @@ function formSubmitHandler(event) {
 
 function getSearch(search) {
     // format API urls
-    var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + search + "&appid=" + apiKey;
-    var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + search + "&appid=" + apiKey;
+    var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + search + "&appid=" + apiKey;
+    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + search + "&appid=" + apiKey;
 
     // fetch API weather data
     fetch(weatherURL)
@@ -91,8 +91,7 @@ function getSearch(search) {
             if (response.ok) {
                 response.json()
                     .then(data => {
-                        console.log("forecast", data)
-                        console.log(forecastURL)
+                        console.log(data)
                         displayForecast(data)
                     })
             } else {
