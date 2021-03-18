@@ -25,25 +25,6 @@ function displayWeather(weather) {
     weatherDataInde.textContent = "UV Index: " + weather.weather[0].main;
 }
 
-function displayForecast(forecast) {
-    var forecastName = document.getElementById('forecastBlock00');
-    var forecast = document.getElementById('forecastBlock01');
-    var forecast = document.getElementById('forecastBlock02');
-    var forecast = document.getElementById('forecastBlock03');
-    var forecast = document.getElementById('forecastBlock04');
-    var forecast = document.getElementById('forecastBlock05');
-
-
-    // check if api returned any forecast
-    if (forecast.length === 0) {
-        forecast.textContent = "No forecast found.";
-        return;
-    }
-
-    // messy set forecast
-    forecastName.textContent = "5-Day Forecast"
-
-}
 
 function presetsClickHandler(event) {
     var preset = event.target.getAttribute("data-location");
@@ -66,33 +47,17 @@ function formSubmitHandler(event) {
 
 function getSearch(search) {
     // format API urls
-    var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + search + "&appid=" + apiKey;
-    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + search + "&appid=" + apiKey;
-
-    // fetch API weather data
-    fetch(weatherURL)
-        .then(response => {
-            if (response.ok) {
-                response.json()
-                    .then(data => {
-                        displayWeather(data)
-                    })
-            } else {
-                console.log("error: " + response.statusText)
-            }
-        })
-        .catch(err => {
-            console.log("error: " + err.statusText)
-        })
+    var weatherAPI = `https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid=${apiKey}`;
+    
 
     // fetch API forecast data
-    fetch(forecastURL)
+    fetch(weatherAPI)
         .then(response => {
             if (response.ok) {
                 response.json()
                     .then(data => {
-                        console.log(data)
-                        displayForecast(data)
+                        console.log("weather api", data)
+                        displayWeather(data)
                     })
             } else {
                 console.log("error: " + response.statusText)
